@@ -57,11 +57,11 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--text);overflow:h
 @keyframes barFill{to{width:100%}}
 
 /* ══ VIDEO BACKGROUND ══ */
-#scene-container{position:fixed;inset:0;z-index:1;overflow:hidden}
-#scene-container video{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(.85);min-width:100%;min-height:100%;width:auto;height:auto;object-fit:cover;transition:transform .8s cubic-bezier(.22,1,.36,1)}
-#scene-container.panel-open video{transform:translate(-50%,-50%) scale(.9)}
-#video-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(250,250,250,.65) 0%,rgba(250,250,250,.35) 40%,rgba(250,250,250,.12) 100%);transition:background .5s ease}
-#scene-container.panel-open #video-overlay{background:linear-gradient(135deg,rgba(250,250,250,.80) 0%,rgba(250,250,250,.50) 40%,rgba(250,250,250,.25) 100%)}
+#scene-container{position:fixed;inset:0;z-index:1;overflow:hidden;background:linear-gradient(135deg,#eafeeb 0%,#e5f8ff 100%)}
+#scene-container video{position:absolute;bottom:0;right:0;width:60vw;height:60vh;object-fit:contain;opacity:.9;transition:width .8s cubic-bezier(.22,1,.36,1),height .8s cubic-bezier(.22,1,.36,1),opacity .8s ease}
+#scene-container.panel-open video{width:50vw;height:50vh;opacity:.5}
+#video-overlay{position:absolute;inset:0;background:radial-gradient(ellipse at 80% 80%,transparent 30%,rgba(234,254,235,.5) 100%);transition:background .5s ease}
+#scene-container.panel-open #video-overlay{background:radial-gradient(ellipse at 60% 70%,transparent 10%,rgba(229,248,255,.7) 100%)}
 
 /* ══ BRANDING (inside nav card) ══ */
 .brand-overlay{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:600;letter-spacing:.02em;opacity:.7;transition:opacity .3s,transform .3s;padding:6px 10px 14px;margin-bottom:4px;border-bottom:1px solid rgba(99,91,255,.12);overflow:hidden;flex-shrink:0}

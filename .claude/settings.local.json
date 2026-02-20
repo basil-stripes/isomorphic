@@ -37,7 +37,9 @@
       "Bash(gh auth status:*)",
       "Bash(git config:*)",
       "Bash(git add:*)",
-      "mcp__Windows-MCP__Scroll"
+      "mcp__Windows-MCP__Scroll",
+      "Bash(timeout:*)",
+      "Bash(ping:*)"
     ]
   }
 }

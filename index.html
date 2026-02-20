@@ -58,8 +58,8 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--text);overflow:h
 
 /* ══ VIDEO BACKGROUND ══ */
 #scene-container{position:fixed;inset:0;z-index:1;overflow:hidden;background:linear-gradient(135deg,#eef6ef 0%,#eaf3f7 100%)}
-#scene-container video{position:absolute;bottom:0;right:0;width:60vw;height:60vh;object-fit:contain;opacity:.9;transition:width .8s cubic-bezier(.22,1,.36,1),height .8s cubic-bezier(.22,1,.36,1),opacity .8s ease}
-#scene-container.panel-open video{width:50vw;height:50vh;opacity:.5}
+#scene-container video{position:absolute;bottom:0;right:0;width:85vw;height:85vh;object-fit:contain;opacity:.9;transition:opacity .8s ease}
+#scene-container.panel-open video{opacity:.5}
 #video-overlay{position:absolute;inset:0;background:radial-gradient(ellipse at 80% 80%,transparent 40%,rgba(246,246,246,.4) 100%);transition:background .5s ease}
 #scene-container.panel-open #video-overlay{background:radial-gradient(ellipse at 60% 70%,transparent 20%,rgba(246,246,246,.6) 100%)}
 

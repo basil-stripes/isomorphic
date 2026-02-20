@@ -36,7 +36,8 @@
       "Bash(powershell -Command:*)",
       "Bash(gh auth status:*)",
       "Bash(git config:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "mcp__Windows-MCP__Scroll"
     ]
   }
 }

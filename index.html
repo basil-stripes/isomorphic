@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Stripes × Isomorphic Labs</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
 <style>
 /* ══ CUSTOM FONTS ══ */
 @font-face{font-family:"Lutz Stripes Web";src:url("Fonts/LutzStripesWeb-Regular.woff2") format("woff2"),url("Fonts/LutzStripesWeb-Regular.woff") format("woff");font-display:swap}
@@ -28,33 +29,13 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--text);overflow:h
 ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:#ccc;border-radius:3px}
 
 /* ══ LOADING SCREEN ══ */
-#loader{position:fixed;inset:0;z-index:10000;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity 1s cubic-bezier(.22,1,.36,1),visibility 1s,transform 1s cubic-bezier(.22,1,.36,1)}
-#loader.done{opacity:0;visibility:hidden;pointer-events:none;transform:translateY(-10px)}
-.loader-helix{position:relative;width:120px;height:160px;margin-bottom:32px}
-.helix-strand{position:absolute;width:100%;height:100%;animation:helixSpin 2.4s linear infinite}
-.helix-strand:nth-child(2){animation-delay:-1.2s}
-.helix-node{position:absolute;left:50%;width:14px;height:14px;border-radius:50%;opacity:0;animation:helixFold 1.6s ease-out forwards}
-.helix-strand:nth-child(1) .helix-node{transform-origin:center}
-.helix-strand:nth-child(2) .helix-node{transform-origin:center}
-.helix-bridge{position:absolute;left:50%;height:2px;background:linear-gradient(90deg,rgba(33,33,33,.15),rgba(100,100,100,.15));border-radius:1px;opacity:0;animation:bridgeFade 1.6s ease-out forwards;transform-origin:left center}
-@keyframes helixSpin{
-  0%{transform:rotateY(0deg)}
-  100%{transform:rotateY(360deg)}
-}
-@keyframes helixFold{
-  0%{opacity:0;transform:translateX(-50%) scale(0)}
-  50%{opacity:1;transform:translateX(-50%) scale(1.2)}
-  100%{opacity:1;transform:translateX(-50%) scale(1)}
-}
-@keyframes bridgeFade{
-  0%,40%{opacity:0;width:0}
-  70%{opacity:.6;width:40px}
-  100%{opacity:.4;width:40px}
-}
-.loader-text{font-family:var(--font-l);font-size:12px;color:var(--text3);letter-spacing:.15em;text-transform:uppercase}
-.loader-bar{width:200px;height:2px;background:var(--bg3);border-radius:1px;margin-top:16px;overflow:hidden}
-.loader-bar-fill{height:100%;background:linear-gradient(90deg,#bbb,#666);width:0;animation:barFill 2s ease-out forwards}
-@keyframes barFill{to{width:100%}}
+#loader{position:fixed;inset:0;z-index:10000;background:linear-gradient(135deg,#eef6ef 0%,#eaf3f7 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;transition:opacity 1.2s cubic-bezier(.22,1,.36,1),visibility 1.2s}
+#loader.done model-viewer{transform:scale(0);opacity:0;transition:transform 1s cubic-bezier(.55,0,.2,1),opacity .8s ease}
+#loader.done .loader-text{opacity:0;transition:opacity .4s ease}
+#loader.done{opacity:0;visibility:hidden;pointer-events:none;transition:opacity .6s ease 1s,visibility .6s ease 1s}
+#loader model-viewer{background:transparent;--poster-color:transparent;transition:transform 1s cubic-bezier(.55,0,.2,1),opacity .8s ease}
+#loader model-viewer::part(default-progress-bar){display:none}
+.loader-text{font-family:var(--font-b);font-size:12px;color:var(--text3);letter-spacing:.15em;text-transform:uppercase;transition:opacity .4s ease}
 
 /* ══ VIDEO BACKGROUND ══ */
 #scene-container{position:fixed;inset:0;z-index:1;overflow:hidden;background:linear-gradient(135deg,#eef6ef 0%,#eaf3f7 100%)}
@@ -308,36 +289,19 @@ h2.sec-title{font-family:var(--font-b);font-size:clamp(32px,4vw,52px);line-heigh
 
 <!-- ══ LOADING SCREEN ══ -->
 <div id="loader">
-  <div class="loader-helix" style="perspective:400px">
-    <div class="helix-strand">
-      <div class="helix-node" style="top:0%;background:#7B9FE8;animation-delay:0s;margin-left:-28px"></div>
-      <div class="helix-node" style="top:14%;background:#8EAFF0;animation-delay:.1s;margin-left:-20px"></div>
-      <div class="helix-node" style="top:28%;background:#A3C1F5;animation-delay:.2s;margin-left:-8px"></div>
-      <div class="helix-node" style="top:42%;background:#F0A0B8;animation-delay:.3s;margin-left:4px"></div>
-      <div class="helix-node" style="top:56%;background:#E88DA5;animation-delay:.4s;margin-left:12px"></div>
-      <div class="helix-node" style="top:70%;background:#F5C070;animation-delay:.5s;margin-left:16px"></div>
-      <div class="helix-node" style="top:84%;background:#80D8C0;animation-delay:.6s;margin-left:12px"></div>
-    </div>
-    <div class="helix-strand">
-      <div class="helix-node" style="top:0%;background:#80D8C0;animation-delay:.15s;margin-left:18px"></div>
-      <div class="helix-node" style="top:14%;background:#F5C070;animation-delay:.25s;margin-left:12px"></div>
-      <div class="helix-node" style="top:28%;background:#E88DA5;animation-delay:.35s;margin-left:0px"></div>
-      <div class="helix-node" style="top:42%;background:#A3C1F5;animation-delay:.45s;margin-left:-12px"></div>
-      <div class="helix-node" style="top:56%;background:#8EAFF0;animation-delay:.55s;margin-left:-20px"></div>
-      <div class="helix-node" style="top:70%;background:#7B9FE8;animation-delay:.65s;margin-left:-24px"></div>
-      <div class="helix-node" style="top:84%;background:#F0A0B8;animation-delay:.75s;margin-left:-20px"></div>
-    </div>
-    <!-- bridges connecting the two strands -->
-    <div class="helix-bridge" style="top:3%;margin-left:-24px;animation-delay:.1s"></div>
-    <div class="helix-bridge" style="top:17%;margin-left:-16px;animation-delay:.2s"></div>
-    <div class="helix-bridge" style="top:31%;margin-left:-4px;animation-delay:.3s"></div>
-    <div class="helix-bridge" style="top:45%;margin-left:-8px;animation-delay:.4s"></div>
-    <div class="helix-bridge" style="top:59%;margin-left:-16px;animation-delay:.5s"></div>
-    <div class="helix-bridge" style="top:73%;margin-left:-20px;animation-delay:.6s"></div>
-    <div class="helix-bridge" style="top:87%;margin-left:-16px;animation-delay:.7s"></div>
-  </div>
-  <p class="loader-text" id="loaderText">Folding protein structure...</p>
-  <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+  <model-viewer
+    src="https://cdn.prod.website-files.com/683d9417ea8f9b604314bfb1/686665832cdbbd365eb33fc0_ISOLVL2_SurfaceDna_glTF_09.gltf.txt"
+    alt="Protein structure"
+    camera-controls
+    auto-rotate
+    rotation-per-second="30deg"
+    interaction-prompt="none"
+    shadow-intensity="0"
+    exposure="1.37"
+    tone-mapping="neutral"
+    style="width:280px;height:280px;--poster-color:transparent;background:transparent"
+  ></model-viewer>
+  <p class="loader-text" id="loaderText">Loading...</p>
 </div>
 
 <!-- ══ VIDEO BACKGROUND ══ -->
@@ -1429,29 +1393,22 @@ document.getElementById('video-overlay').addEventListener('click', () => {
 // ═══════════════════════════
 // LOADING SCREEN
 // ═══════════════════════════
-const loaderText = document.getElementById('loaderText');
-const loadMessages = ['Folding protein structure...', 'Loading visualization...', 'Ready'];
-let msgIdx = 0;
-const msgInterval = setInterval(() => {
-  msgIdx++;
-  if (msgIdx < loadMessages.length) {
-    loaderText.textContent = loadMessages[msgIdx];
-  } else {
-    clearInterval(msgInterval);
-  }
-}, 800);
+// Show loading screen for ~10s while protein spins, then zoom-fade out
+const loaderStart = Date.now();
+const LOADER_MIN_MS = 10000; // minimum 10 seconds of loading screen
 
-// Dismiss loader when video is ready (or after 4s fallback)
-bgVideo.addEventListener('canplaythrough', () => {
+function dismissLoader() {
+  const elapsed = Date.now() - loaderStart;
+  const remaining = Math.max(0, LOADER_MIN_MS - elapsed);
   setTimeout(() => {
     document.getElementById('loader').classList.add('done');
     bgVideo.play().catch(() => {});
-  }, 800);
-}, { once: true });
+  }, remaining);
+}
 
-setTimeout(() => {
-  document.getElementById('loader').classList.add('done');
-}, 4000);
+bgVideo.addEventListener('canplaythrough', dismissLoader, { once: true });
+// Fallback: dismiss after 10s even if video never loads
+setTimeout(dismissLoader, LOADER_MIN_MS);
 
 // ═══════════════════════════
 // ANIMATED ISOMORPHIC LOGO (Lottie)
@@ -1479,7 +1436,7 @@ document.querySelectorAll('[data-iso-lottie]').forEach(container => {
 // Play all on page load after loader finishes
 setTimeout(() => {
   isoLottieInstances.forEach(({ anim }) => anim.goToAndPlay(0, true));
-}, 2400);
+}, 11500);
 
 // Replay brand overlay logo when transitioning between home/content
 const origOpenPanel = openPanel;

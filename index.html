@@ -535,7 +535,7 @@ h2.sec-title{font-family:var(--font-b);font-size:clamp(32px,4vw,52px);line-heigh
         <h1>Reimagining<br><span class="gradient-text">Drug Discovery</span><br>with AI</h1>
         <p>Stripes is an NYC-based growth equity firm led by entrepreneurs and operators. We invest in and actively support best-in-class, category-defining companies. We believe Isomorphic Labs will revolutionize drug discovery.</p>
         <div class="hero-meta">
-          <div class="hero-meta-item"><span class="val" data-count="8" data-prefix="$" data-suffix="B">$0B</span><span class="lbl">AUM</span></div>
+          <div class="hero-meta-item"><span class="val" data-count="7" data-prefix="$" data-suffix="B">$0B</span><span class="lbl">AUM</span></div>
           <div class="hero-meta-item"><span class="val">Fund VII</span><span class="lbl">Current Fund</span></div>
           <div class="hero-meta-item"><span class="val">NYC</span><span class="lbl">Headquartered</span></div>
         </div>
@@ -571,7 +571,7 @@ h2.sec-title{font-family:var(--font-b);font-size:clamp(32px,4vw,52px);line-heigh
           </tbody>
         </table>
       </div>
-      <div class="callout">We believe Isomorphic Labs will be a highly sought-after business for public market investors — like On Running (NYSE: ONON, $19.5B) and Monday.com (NASDAQ: MNDY, $14.9B).</div>
+      <div class="callout">We believe Isomorphic Labs will be a highly sought-after business for public market investors — like On Running (NYSE: ONON, $15.7B) and Monday.com (NASDAQ: MNDY, $14.9B at time of investment).</div>
     </div>
   </div>
 
@@ -1086,13 +1086,13 @@ h2.sec-title{font-family:var(--font-b);font-size:clamp(32px,4vw,52px);line-heigh
       <div class="panel-breadcrumb"><span>Home</span><span class="bc-sep">›</span><span>Our Team</span><span class="bc-sep">›</span><span style="color:var(--accent)">Stripes Overview</span></div>
       <div class="label">Stripes Overview</div>
       <h2 class="sec-title">We help teams with amazing products<br>build categories that matter</h2>
-      <p class="sec-sub">Founded in 2008 with a mission to invest in best-in-class technology and consumer products. Based in NYC, investing globally with $8B AUM.</p>
+      <p class="sec-sub">Founded in 2008 with a mission to invest in best-in-class technology and consumer products. Based in NYC, investing globally with $7B AUM.</p>
 
       <!-- Investment Timeline -->
       <h3 style="font-size:18px;font-family:var(--font-g);font-weight:700;margin:32px 0 16px">Key Portfolio Milestones</h3>
       <div class="timeline" id="investTimeline">
-        <div class="timeline-item"><div class="tl-date">Series C Lead</div><h4>monday.com</h4><p>Brand marketing strategy, IPO preparation → NASDAQ: MNDY, <strong style="color:var(--accent)">$14.9B</strong> market cap</p></div>
-        <div class="timeline-item"><div class="tl-date">First Institutional Investor</div><h4>On Running</h4><p>eCommerce optimization, strategic intros → NYSE: ONON, <strong style="color:var(--accent)">$19.5B</strong> market cap</p></div>
+        <div class="timeline-item"><div class="tl-date">Series C Lead</div><h4>monday.com</h4><p>Brand marketing strategy, IPO preparation → NASDAQ: MNDY, <strong style="color:var(--accent)">$14.9B</strong> market cap at time of investment</p></div>
+        <div class="timeline-item"><div class="tl-date">First Institutional Investor</div><h4>On Running</h4><p>eCommerce optimization, strategic intros → NYSE: ONON, <strong style="color:var(--accent)">$15.7B</strong> market cap</p></div>
         <div class="timeline-item"><div class="tl-date">Led $225M Round</div><h4>A24</h4><p>Category-defining entertainment brand → Private valuation: <strong style="color:var(--accent)">$3.5B+</strong></p></div>
       </div>
 
@@ -1378,7 +1378,7 @@ h2.sec-title{font-family:var(--font-b);font-size:clamp(32px,4vw,52px);line-heigh
         <p>We believe Isomorphic Labs can revolutionize drug discovery. Let's build the future of medicine together.</p>
       </div>
       <div class="cta-footer">
-        <span>Stripes × Isomorphic Labs • February 2026</span>
+        <span>Stripes × Isomorphic Labs • <span id="footerDate"></span></span>
         <span>Confidential — For Discussion Purposes Only</span>
       </div>
     </div>
@@ -1419,6 +1419,15 @@ h2.sec-title{font-family:var(--font-b);font-size:clamp(32px,4vw,52px);line-heigh
   }
   btn.addEventListener('click', tryUnlock);
   inp.addEventListener('keydown', e=>{ if(e.key==='Enter') tryUnlock(); });
+})();
+
+// ═══════════════════════════
+// DYNAMIC FOOTER DATE
+// ═══════════════════════════
+(function(){
+  const d = new Date();
+  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  document.getElementById('footerDate').textContent = months[d.getMonth()] + ' ' + d.getFullYear();
 })();
 
 // ═══════════════════════════

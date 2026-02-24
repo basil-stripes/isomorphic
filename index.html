@@ -40,8 +40,8 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--text);overflow:h
 /* ══ PASSWORD GATE ══ */
 #pw-gate{position:fixed;inset:0;z-index:99999;background:linear-gradient(135deg,#eef6ef 0%,#eaf3f7 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;transition:opacity .6s ease,visibility .6s ease}
 #pw-gate.unlocked{opacity:0;visibility:hidden;pointer-events:none}
-#pw-gate .pw-brand{display:flex;align-items:center;gap:10px;margin-bottom:8px;opacity:.7}
-#pw-gate .pw-brand img{height:28px}
+#pw-gate .pw-brand{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:16px}
+.pw-x{font-family:var(--font-m);font-size:13px;color:var(--text3);font-weight:400}
 #pw-gate .pw-label{font-family:var(--font-l);font-size:11px;color:var(--text3);letter-spacing:.15em;text-transform:uppercase}
 #pw-gate .pw-input-wrap{display:flex;align-items:center;gap:8px}
 #pw-gate input{font-family:var(--font-b);font-size:14px;padding:10px 16px;border:1px solid var(--border);border-radius:10px;outline:none;width:260px;background:#fff;transition:border-color .2s}
@@ -198,6 +198,17 @@ h2.sec-title{font-family:var(--font-b);font-size:clamp(32px,4vw,52px);line-heigh
 .badge-leader{background:rgba(36,209,100,.12);color:var(--green)}
 .badge-contend{background:rgba(255,122,0,.12);color:var(--orange)}
 .badge-emerge{background:rgba(128,233,255,.12);color:var(--accent2)}
+
+/* ══ PIPELINE STAGE TAGS ══ */
+.stage-tag{display:inline-block;padding:2px 8px;border-radius:100px;font-size:9px;font-weight:600;letter-spacing:.03em;white-space:nowrap}
+.stage-disc{background:rgba(0,188,212,.10);color:#00838f}
+.stage-tgtval{background:rgba(33,150,243,.10);color:#1565c0}
+.stage-hit{background:rgba(156,39,176,.10);color:#7b1fa2}
+.stage-lead{background:rgba(255,92,170,.10);color:#c2185b}
+.stage-preclin{background:rgba(255,122,0,.10);color:#e65100}
+.stage-clin{background:rgba(244,67,54,.10);color:#c62828}
+.stage-infra{background:rgba(0,0,0,.05);color:var(--text3)}
+.stage-e2e{background:rgba(36,209,100,.10);color:#2e7d32}
 
 /* ══ RISK TABLE ══ */
 .risk-row{display:grid;grid-template-columns:1fr 1fr;gap:0;border-bottom:1px solid var(--border)}
@@ -391,7 +402,14 @@ h2.sec-title{font-family:var(--font-b);font-size:clamp(32px,4vw,52px);line-heigh
 
 <!-- ══ PASSWORD GATE ══ -->
 <div id="pw-gate">
-  <div class="pw-brand"><img src="https://www.google.com/s2/favicons?domain=stripes.co&sz=64" alt="Stripes"> × Isomorphic Labs</div>
+  <div class="pw-brand">
+    <img src="https://www.stripes.co/dist/svg/logo-black.svg" alt="Stripes" style="height:22px;opacity:.85" onerror="this.outerHTML='<span style=font-weight:800;letter-spacing:.05em;font-size:16px>///\\ STRIPES</span>'">
+    <span class="pw-x">x</span>
+    <span class="iso-logo" id="pw-iso-logo" style="height:30px">
+      <svg class="iso-frame" viewBox="0 0 259 40" xmlns="http://www.w3.org/2000/svg"><path fill="#1E1E1E" d="M258.8,5.6v28.9c0,3.1-2.5,5.6-5.6,5.6h-64.1c-2.2,0-4.1-1.3-5-3.1c-0.9,1.9-2.8,3.1-5,3.1H45.5c-2.2,0-4.1-1.3-5-3.1c-0.9,1.8-2.8,3.1-5,3.1h-30C2.5,40,0,37.5,0,34.4V5.6C0,2.5,2.5,0,5.6,0h30c2.2,0,4.1,1.3,5,3.1c0.9-1.8,2.8-3.1,5-3.1h133.6c2.2,0,4.1,1.3,5,3.1c0.9-1.9,2.8-3.1,5-3.1h64.1C256.3,0,258.8,2.5,258.8,5.6L258.8,5.6zM40,34.4V5.6c0-2.5-2-4.4-4.4-4.4h-30c-2.4,0-4.4,2-4.4,4.4v28.9c0,2.4,2,4.4,4.4,4.4h30C38,38.9,39.9,36.9,40,34.4zM183.6,34.4V5.6c0-2.4-2-4.4-4.4-4.4H45.5c-2.4,0-4.4,2-4.4,4.4v28.9c0,2.5,2,4.4,4.4,4.4h133.6C181.6,38.9,183.6,36.9,183.6,34.4zM257.7,5.6c0-2.4-2-4.4-4.4-4.4h-64.1c-2.4,0-4.4,2-4.4,4.4v28.9c0,2.4,2,4.4,4.4,4.4h64.1c2.4,0,4.4-2,4.4-4.4V5.6z"/><path fill="#1E1E1E" transform="translate(9.065,1.4) scale(0.93)" d="M52.3,28.1h2.5V9.5h-2.5V28.1zM65.9,21.2c-0.3-0.2-0.6-0.3-1-0.4c-0.4-0.1-1.1-0.3-2.3-0.6c-1.3-0.3-1.6-0.4-1.9-0.5c-0.8-0.3-1.1-0.7-1.1-1.4c0-1.2,1-2,2.6-2c1.6,0,3,0.8,3.7,2.2l1.7-1.3c-0.8-1.7-2.9-2.8-5.2-2.8c-1.5,0-2.6,0.4-3.6,1.2c-0.9,0.8-1.4,1.7-1.4,2.9c0,1.2,0.4,2.1,1.5,2.7c0.3,0.2,0.6,0.4,1.1,0.5c0.4,0.1,1.1,0.3,2,0.5c0.8,0.2,1.3,0.3,1.6,0.4c0.2,0.1,0.5,0.1,0.6,0.2c0.9,0.3,1.3,0.8,1.3,1.6c0,1.3-1.2,2.1-3,2.1s-3.4-1-4.1-2.5l-1.8,1.3c1,2,3.3,3.2,6,3.2c1.5,0,2.7-0.4,3.8-1.2c1-0.8,1.5-1.8,1.5-3.1C67.6,22.8,67.1,21.9,65.9,21.2zM80,16.4c1.1,1.2,1.6,3,1.6,4.9s-0.6,3.7-1.6,4.9c-1.1,1.3-2.8,2.1-4.7,2.1c-1.9,0-3.5-0.8-4.7-2.1c-1.1-1.2-1.6-3-1.6-4.9s0.6-3.7,1.6-4.9c1.1-1.3,2.8-2.1,4.7-2.1C77.2,14.3,78.9,15.1,80,16.4zM79.3,21.4c0-3.1-1.6-5.1-3.9-5.1c-2.4,0-3.9,2-3.9,5.1s1.6,5.1,3.9,5.1C77.8,26.4,79.3,24.5,79.3,21.4zM98.2,14.3c-1.8,0-3.4,0.9-4.3,2.3c-0.7-1.5-2-2.3-3.8-2.3c-1.7,0-3.1,0.8-3.9,2.1v-1.8h-2.3v13.5h2.3V20c0-1,0.3-1.8,0.9-2.5c0.6-0.6,1.5-1.1,2.3-1.1c1.7,0,2.7,1.2,2.7,3.3v8.3h2.3V20c0-1,0.3-1.8,0.9-2.5c0.6-0.6,1.5-1.1,2.3-1.1c1.7,0,2.7,1.2,2.7,3.3v8.3h2.3v-8.9C102.6,16.3,100.9,14.3,98.2,14.3zM115.6,16.4c1.1,1.2,1.6,3,1.6,4.9s-0.6,3.7-1.6,4.9c-1.1,1.3-2.8,2.1-4.7,2.1s-3.5-0.8-4.7-2.1c-1.1-1.2-1.6-3-1.6-4.9s0.6-3.7,1.6-4.9c1.1-1.3,2.8-2.1,4.7-2.1S114.5,15.1,115.6,16.4zM114.9,21.4c0-3.1-1.6-5.1-3.9-5.1c-2.4,0-3.9,2-3.9,5.1s1.6,5.1,3.9,5.1C113.4,26.4,114.9,24.5,114.9,21.4zM121.8,16.3v-1.7h-2.3v13.5h2.3v-7.4c0-1.2-0.1-2.5,0.6-3.2c0.5-0.5,0.9-0.6,1.9-0.6c0.4,0,2.1,0,2.1,0v-2.3h-2.2C123.7,14.6,122.4,14.8,121.8,16.3zM139.1,16.5c0.9,1.3,1.5,3,1.5,4.9s-0.5,3.6-1.5,4.9c-1.1,1.4-2.6,2.2-4.4,2.2c-1.8,0-3.4-0.8-4.2-2.3v6.6h-2.3V14.6h2.3v2c0.9-1.4,2.4-2.2,4.2-2.2C136.5,14.3,138.1,15.1,139.1,16.5zM138.2,21.4c0-3-1.5-5-4-5c-2.3,0-3.8,1.7-3.8,4.5v1c0,2.8,1.6,4.5,3.8,4.5C136.7,26.4,138.2,24.4,138.2,21.4zM149.1,14.3c-1.7,0-3.1,0.8-4,2.1V9.5h-2.3v18.6h2.3v-8.1c0-1,0.3-1.9,1-2.5c0.7-0.7,1.5-1,2.4-1c1.8,0,2.8,1.2,2.8,3.3v8.3h2.3v-8.9C153.6,16.2,151.9,14.3,149.1,14.3zM156.4,28.1h2.3V14.6h-2.3V28.1zM156.1,12.6h2.9v-3h-2.9V12.6zM167.4,26.4c-2.5,0-4.1-2-4.1-5s1.6-5,4.1-5c1.7,0,3,1,3.4,2.9l2-1c-0.7-2.4-2.7-3.9-5.4-3.9c-1.9,0-3.6,0.7-4.7,2.1c-1.1,1.3-1.7,3-1.7,5s0.6,3.7,1.7,5c1.1,1.3,2.8,2.1,4.7,2.1c2.7,0,4.7-1.6,5.4-4l-2.1-1C170.3,25.3,169.1,26.4,167.4,26.4zM198.6,9.5h-2.5v18.6h11.8V26h-9.3V9.5zM220.2,26.1h1.2v2h-2.8c-0.7,0-1.2-0.4-1.2-1.5c-0.9,1.1-2.6,1.8-4.4,1.8c-1.3,0-2.4-0.4-3.2-1.1c-0.8-0.7-1.2-1.7-1.2-2.8c0-2.3,1.5-3.7,5.1-4.4l3.3-0.7v-0.6c0-1.6-0.9-2.4-2.7-2.4c-1.7,0-2.7,0.8-3.1,2.3l-2.2-0.6c0.7-2.3,2.7-3.8,5.4-3.8c3.1,0,4.9,1.6,4.9,4.4v6.6C219.3,26,219.2,26.1,220.2,26.1zM217,21.2l-2.6,0.6c-2.6,0.5-3.5,1.3-3.5,2.6c0,1.3,0.9,2.1,2.4,2.1c1,0,1.9-0.3,2.6-0.8c0.7-0.6,1.1-1.3,1.1-2.1V21.2zM233.7,16.5c0.9,1.3,1.5,3,1.5,4.9s-0.5,3.6-1.5,4.9c-1.1,1.4-2.6,2.2-4.4,2.2s-3.4-0.8-4.2-2.3v2h-2.3V9.5h2.3v7c0.9-1.4,2.4-2.2,4.2-2.2C231.1,14.3,232.7,15.1,233.7,16.5zM232.8,21.4c0-3-1.5-5-4-5c-2.3,0-3.8,1.7-3.8,4.5v1c0,2.8,1.6,4.5,3.8,4.5C231.3,26.4,232.8,24.4,232.8,21.4zM245.5,21.2c-0.3-0.2-0.6-0.3-1-0.4c-0.4-0.1-1.1-0.3-2.3-0.6c-1.3-0.3-1.6-0.4-1.9-0.5c-0.8-0.3-1.1-0.7-1.1-1.4c0-1.2,1-2,2.6-2c1.6,0,3,0.8,3.7,2.2l1.7-1.3c-0.8-1.7-2.9-2.8-5.2-2.8c-1.4,0-2.6,0.4-3.6,1.2c-0.9,0.8-1.4,1.7-1.4,2.9c0,1.2,0.4,2.1,1.4,2.7c0.3,0.2,0.6,0.4,1.1,0.5c0.4,0.1,1.1,0.3,2,0.5c0.8,0.2,1.3,0.3,1.6,0.4c0.2,0.1,0.5,0.1,0.6,0.2c0.9,0.3,1.3,0.8,1.3,1.6c0,1.3-1.2,2.1-3,2.1c-1.8,0-3.4-1-4.1-2.5l-1.8,1.3c1,2,3.3,3.2,6,3.2c1.5,0,2.7-0.4,3.8-1.2c1-0.8,1.5-1.8,1.5-3.1C247.1,22.8,246.6,21.9,245.5,21.2z"/></svg>
+      <span class="iso-lottie" data-iso-lottie style="width:15.4%;height:100%;border-radius:2px"></span>
+    </span>
+  </div>
   <div class="pw-label">Enter password to continue</div>
   <div class="pw-input-wrap">
     <input type="password" id="pw-input" placeholder="Password" autocomplete="off" autofocus>
@@ -490,8 +508,7 @@ h2.sec-title{font-family:var(--font-b);font-size:clamp(32px,4vw,52px);line-heigh
         <button class="nav-item" data-target="team" style="--nav-accent:#635BFF">Stripes Overview</button>
         <button class="nav-item" data-target="scaleteam" style="--nav-accent:#24D164">Scale Team</button>
         <button class="nav-item" data-target="healthcare" style="--nav-accent:#FF6B9D">Healthcare Expertise</button>
-        <button class="nav-item" data-target="ops" style="--nav-accent:#80E9FF">Operating Partners</button>
-        <button class="nav-item" data-target="councils" style="--nav-accent:#FF5CAA">Advisory Councils</button>
+        <button class="nav-item" data-target="ops" style="--nav-accent:#80E9FF">Our Network</button>
         <button class="nav-item" data-target="end" style="--nav-accent:#635BFF">Thank You</button>
       </div>
     </div>
@@ -822,53 +839,198 @@ h2.sec-title{font-family:var(--font-b);font-size:clamp(32px,4vw,52px);line-heigh
     <div class="panel-inner">
       <div class="panel-breadcrumb"><span>Home</span><span class="bc-sep">›</span><span>Our Perspective</span><span class="bc-sep">›</span><span style="color:#FF5CAA">Competitive Landscape</span></div>
       <div class="label">Competitive Landscape</div>
-      <h2 class="sec-title">Leading the AI drug<br>discovery race</h2>
-      <div class="data-table-wrap" style="overflow-x:auto">
-        <table class="data-table" style="min-width:900px">
-          <thead><tr><th>Company</th><th>AI Sophistication</th><th>Partnerships</th><th>Data/Compute Moat</th><th>Platform UX</th><th>Status</th></tr></thead>
+      <h2 class="sec-title">A crowded field — but<br>Isomorphic stands apart</h2>
+      <p class="sec-sub">AI drug discovery has attracted $3B+ in venture capital since 2022. The landscape spans point-solution startups, AI-native biotechs, and infrastructure plays. Below is a comprehensive map of the competitive terrain.</p>
+
+      <!-- KEY COMPETITOR PROFILES -->
+      <h3 style="font-size:16px;font-family:var(--font-g);font-weight:700;margin:28px 0 6px;color:var(--text)">Key Competitor Profiles</h3>
+
+      <div class="thesis-item" onclick="toggleExpand(this)" style="margin-bottom:8px">
+        <div class="thesis-num" style="background:rgba(255,92,170,.08);color:#FF5CAA">
+          <img src="https://www.google.com/s2/favicons?domain=cradle.bio&sz=64" alt="Cradle" style="width:18px;height:18px;border-radius:3px">
+        </div>
+        <div>
+          <h3>Cradle — Protein Engineering Optimization <span class="expand-icon">&#9662;</span></h3>
+          <p>Closed-loop protein and antibody lead optimization — a pharma team brings a defined target and initial molecule, and Cradle proposes optimized variants that are experimentally tested.</p>
+          <div class="thesis-extra">Cradle is tightly coupled with wet-lab experimentation. Experimental data feeds back into the platform so models learn from each iteration. Designed to reduce time between optimization rounds and increase the likelihood that each iteration meaningfully improves potency, stability, and manufacturability. A <strong>convergence accelerator</strong> rather than a de novo design tool.</div>
+        </div>
+      </div>
+
+      <div class="thesis-item" onclick="toggleExpand(this)" style="margin-bottom:8px">
+        <div class="thesis-num" style="background:rgba(102,126,234,.08);color:#667eea">
+          <img src="https://www.google.com/s2/favicons?domain=chaidiscovery.com&sz=64" alt="Chai" style="width:18px;height:18px;border-radius:3px">
+        </div>
+        <div>
+          <h3>Chai Discovery — Early Discovery &amp; Hit Generation <span class="expand-icon">&#9662;</span></h3>
+          <p>Molecular interaction modeling and generative biologics — focused on early discovery where little or no starting molecule exists.</p>
+          <div class="thesis-extra">Chai generates candidate binders or interaction hypotheses from biological targets, accelerating the transition from biological hypothesis to viable starting molecules. Its value lies at the <strong>front of the discovery funnel</strong> — increasing the speed and breadth of early exploration rather than optimizing known leads.</div>
+        </div>
+      </div>
+
+      <!-- FULL LANDSCAPE TABLE -->
+      <h3 style="font-size:16px;font-family:var(--font-g);font-weight:700;margin:28px 0 6px;color:var(--text)">Full Competitive Map</h3>
+      <p style="font-size:12px;color:var(--text3);margin-bottom:12px">Sorted by funding raised. Pipeline stages color-coded to the drug development lifecycle.</p>
+
+      <div class="data-table-wrap">
+        <table class="data-table" style="font-size:12px;table-layout:fixed;width:100%">
+          <colgroup>
+            <col style="width:18%">
+            <col style="width:5%">
+            <col style="width:22%">
+            <col style="width:37%">
+            <col style="width:10%">
+            <col style="width:8%">
+          </colgroup>
+          <thead>
+            <tr><th>Company</th><th>Est.</th><th>Pipeline Stage</th><th>Specific Edge</th><th>Raised</th><th>Team</th></tr>
+          </thead>
           <tbody>
             <tr>
-              <td><div style="display:flex;align-items:center;gap:8px"><div class="lr-icon no-pad" style="background:linear-gradient(135deg,#635BFF,#80E9FF);width:28px;height:28px;border-radius:6px"><img src="https://www.google.com/s2/favicons?domain=isomorphiclabs.com&sz=128" alt="ISO"></div><span class="em">Isomorphic Labs</span></div></td>
-              <td><div class="dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div></div></td>
-              <td><div style="display:flex;gap:4px;flex-wrap:wrap"><div class="lr-icon no-pad" style="background:#E21937;width:20px;height:20px;border-radius:4px"><img src="https://www.google.com/s2/favicons?domain=lilly.com&sz=128" alt="LLY"></div><div class="lr-icon no-pad" style="background:#0460A9;width:20px;height:20px;border-radius:4px"><img src="https://www.google.com/s2/favicons?domain=novartis.com&sz=128" alt="NVS"></div></div></td>
-              <td><div class="dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div></div></td>
-              <td><div class="dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div></div></td>
-              <td><span class="badge badge-leader">Leader</span></td>
+              <td class="em">Xaira Therapeutics</td>
+              <td>2024</td>
+              <td><span class="stage-tag stage-e2e">End-to-end</span></td>
+              <td>AI-native biotech integrating AI across discovery and early development for internal programs</td>
+              <td class="em">~$1B+</td>
+              <td>190</td>
             </tr>
             <tr>
-              <td><div style="display:flex;align-items:center;gap:8px"><div class="lr-icon no-pad" style="background:#FF6B6B;width:28px;height:28px;border-radius:6px"><img src="https://www.google.com/s2/favicons?domain=insilico.com&sz=128" alt="INS"></div><span class="em">Insilico Medicine</span></div></td>
-              <td><div class="dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div></div></td>
-              <td>Multiple clinical trials</td>
-              <td><div class="dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div></div></td>
-              <td><div class="dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div></div></td>
-              <td><span class="badge badge-contend">Contender</span></td>
+              <td class="em">Formation Bio</td>
+              <td>2016</td>
+              <td><span class="stage-tag stage-disc">Discovery</span> <span class="stage-tag stage-clin">Clinical</span></td>
+              <td>AI discovery paired with in-house drug development, advancing assets through clinical stages</td>
+              <td class="em">~$600M+</td>
+              <td>200</td>
             </tr>
             <tr>
-              <td><div style="display:flex;align-items:center;gap:8px"><div class="lr-icon no-pad" style="background:#00BCD4;width:28px;height:28px;border-radius:6px"><img src="https://www.google.com/s2/favicons?domain=recursion.com&sz=128" alt="RX"></div><span class="em">Recursion</span></div></td>
-              <td><div class="dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div></div></td>
-              <td><div style="display:flex;gap:4px"><div class="lr-icon no-pad" style="background:#1D71B8;width:20px;height:20px;border-radius:4px"><img src="https://www.google.com/s2/favicons?domain=roche.com&sz=128" alt="Roche"></div></div> Roche/Genentech, Bayer</td>
-              <td><div class="dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div></div></td>
-              <td><div class="dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div></div></td>
-              <td><span class="badge badge-contend">Contender</span></td>
+              <td class="em">Lila Sciences</td>
+              <td>2023</td>
+              <td><span class="stage-tag stage-disc">Discovery</span> <span class="stage-tag stage-lead">Lead Opt.</span></td>
+              <td>AI models + large-scale automated wet labs generating proprietary data for iterative refinement</td>
+              <td class="em">$550M</td>
+              <td>260</td>
             </tr>
             <tr>
-              <td><div style="display:flex;align-items:center;gap:8px"><div class="lr-icon no-pad" style="background:#667eea;width:28px;height:28px;border-radius:6px"><img src="https://www.google.com/s2/favicons?domain=chaidiscovery.com&sz=128" alt="CH"></div><span class="em">Chai Discovery</span></div></td>
-              <td><div class="dots"><div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></td>
-              <td>Limited</td>
-              <td><div class="dots"><div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></td>
-              <td><div class="dots"><div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></td>
-              <td><span class="badge badge-emerge">Emerging</span></td>
+              <td class="em">Genesis Therapeutics</td>
+              <td>2019</td>
+              <td><span class="stage-tag stage-hit">Hit ID</span> <span class="stage-tag stage-lead">Lead Opt.</span></td>
+              <td>Physics-aware ML for small-molecule design on difficult targets using biophysical constraints</td>
+              <td class="em">$250M</td>
+              <td>150</td>
             </tr>
             <tr>
-              <td><div style="display:flex;align-items:center;gap:8px"><div class="lr-icon no-pad" style="background:#6C63FF;width:28px;height:28px;border-radius:6px"><img src="https://www.google.com/s2/favicons?domain=schrodinger.com&sz=128" alt="SD"></div><span class="em">Schrödinger</span></div></td>
-              <td><div class="dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div></div></td>
-              <td>Broad pharma client base</td>
-              <td><div class="dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div></div></td>
-              <td><div class="dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div></div></td>
-              <td><span class="badge badge-contend">Contender</span></td>
+              <td class="em">Profluent Bio</td>
+              <td>2022</td>
+              <td><span class="stage-tag stage-disc">Discovery</span> <span class="stage-tag stage-hit">Hit ID</span></td>
+              <td>Large generative protein models to design novel sequences beyond known scaffolds</td>
+              <td class="em">~$150M</td>
+              <td>50</td>
+            </tr>
+            <tr>
+              <td class="em">Medra AI</td>
+              <td>2025</td>
+              <td><span class="stage-tag stage-hit">Hit ID</span></td>
+              <td>Autonomous small-molecule discovery loops combining AI with robotic wet-lab execution</td>
+              <td class="em">$82M</td>
+              <td>5</td>
+            </tr>
+            <tr>
+              <td class="em">Edison Scientific</td>
+              <td>2025</td>
+              <td><span class="stage-tag stage-disc">Discovery</span></td>
+              <td>Discovery support and hypothesis generation</td>
+              <td class="em">$70M</td>
+              <td>45</td>
+            </tr>
+            <tr>
+              <td class="em">Manas AI</td>
+              <td>2023</td>
+              <td><span class="stage-tag stage-disc">Discovery</span> <span class="stage-tag stage-preclin">Preclinical</span></td>
+              <td>Rapidly designs and advances internal therapeutic programs — asset creation over software</td>
+              <td class="em">$50M</td>
+              <td>16</td>
+            </tr>
+            <tr>
+              <td class="em">Latent Labs</td>
+              <td>2023</td>
+              <td><span class="stage-tag stage-disc">Discovery</span></td>
+              <td>Frontier models for discovery support and hypothesis generation</td>
+              <td class="em">$50M</td>
+              <td>20</td>
+            </tr>
+            <tr>
+              <td class="em">Collate</td>
+              <td>2025</td>
+              <td><span class="stage-tag stage-infra">Infrastructure</span></td>
+              <td>Data management, experiment tracking, and workflow tooling for AI-native biotech</td>
+              <td>$30M</td>
+              <td>23</td>
+            </tr>
+            <tr>
+              <td class="em">Axiom AI</td>
+              <td>2024</td>
+              <td><span class="stage-tag stage-infra">Infrastructure</span></td>
+              <td>Compute, analytics, and experimentation infrastructure for AI-driven biology</td>
+              <td>$30M</td>
+              <td>23</td>
+            </tr>
+            <tr>
+              <td class="em">Boltz Bio</td>
+              <td>2025</td>
+              <td><span class="stage-tag stage-hit">Hit ID</span> <span class="stage-tag stage-lead">Lead Opt.</span></td>
+              <td>Biophysical modeling + ML for molecule design with structural and binding constraints</td>
+              <td>$28M</td>
+              <td>6</td>
+            </tr>
+            <tr>
+              <td class="em">Ataraxis AI</td>
+              <td>2023</td>
+              <td><span class="stage-tag stage-disc">Discovery</span></td>
+              <td>Predictive models for molecular and biological outcomes across discovery workflows</td>
+              <td>$24M</td>
+              <td>36</td>
+            </tr>
+            <tr>
+              <td class="em">Valinor Discovery</td>
+              <td>2024</td>
+              <td><span class="stage-tag stage-hit">Hit ID</span></td>
+              <td>AI small-molecule discovery grounded in biological context and target relevance</td>
+              <td>$13M</td>
+              <td>12</td>
+            </tr>
+            <tr>
+              <td class="em">Numenos AI</td>
+              <td>2023</td>
+              <td><span class="stage-tag stage-hit">Hit ID</span></td>
+              <td>Early-stage molecular design models for initial hit generation and prioritization</td>
+              <td>$8M</td>
+              <td>14</td>
             </tr>
           </tbody>
         </table>
+      </div>
+
+      <!-- STAGE TAG LEGEND -->
+      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;padding:8px 0">
+        <span style="font-size:10px;color:var(--text3);margin-right:4px;line-height:20px">Stages:</span>
+        <span class="stage-tag stage-disc">Discovery</span>
+        <span class="stage-tag stage-tgtval">Target Val.</span>
+        <span class="stage-tag stage-hit">Hit ID</span>
+        <span class="stage-tag stage-lead">Lead Opt.</span>
+        <span class="stage-tag stage-preclin">Preclinical</span>
+        <span class="stage-tag stage-clin">Clinical</span>
+        <span class="stage-tag stage-e2e">End-to-end</span>
+        <span class="stage-tag stage-infra">Infrastructure</span>
+      </div>
+
+      <!-- ISOMORPHIC DIFFERENTIATION -->
+      <div style="background:rgba(99,91,255,.04);border:1px solid rgba(99,91,255,.12);border-radius:12px;padding:20px 24px;margin-top:24px">
+        <h3 style="font-size:14px;font-family:var(--font-g);font-weight:700;margin:0 0 8px;color:var(--accent)">Why Isomorphic Is Different</h3>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:12px;color:var(--text2)">
+          <div><strong style="color:var(--text)">Full-stack, not point-solution.</strong> Most competitors address one stage of discovery. Isomorphic spans target ID through lead optimization with integrated models.</div>
+          <div><strong style="color:var(--text)">DeepMind lineage.</strong> All new foundational AI models from DeepMind flow directly to Isomorphic — no other startup has this pipeline of frontier research.</div>
+          <div><strong style="color:var(--text)">Alphabet compute.</strong> Access to Google's infrastructure provides a durable data and compute moat that venture-funded competitors cannot replicate.</div>
+          <div><strong style="color:var(--text)">Co-development, not SaaS.</strong> Lilly and Novartis partnerships are joint drug programs with shared clinical upside — not software licenses or service contracts.</div>
+        </div>
       </div>
     </div>
   </div>
@@ -1066,116 +1228,135 @@ h2.sec-title{font-family:var(--font-b);font-size:clamp(32px,4vw,52px);line-heigh
       <div style="background:rgba(255,107,157,.04);border-radius:12px;padding:16px 20px;margin-top:24px;border:1px solid rgba(255,107,157,.06)">
         <p style="font-size:12.5px;color:var(--text2);line-height:1.6;margin:0"><strong style="color:var(--text)">Pattern recognition:</strong> Across these investments we've learned how to sell complex technology platforms into pharma R&D organizations — long sales cycles, multi-stakeholder buying committees, compliance requirements, and the importance of clinical validation.</p>
       </div>
+
+      <!-- HEALTHCARE NETWORK -->
+      <h3 style="font-size:16px;font-family:var(--font-g);font-weight:700;margin:32px 0 6px;color:var(--text)">Healthcare Network</h3>
+      <p style="font-size:12px;color:var(--text3);margin-bottom:14px">Senior leaders across pharma, health systems, payers, and life sciences — available to Isomorphic through our advisory councils and executive advisor network.</p>
+
+      <div class="data-table-wrap">
+        <table class="data-table" style="font-size:12px;table-layout:fixed;width:100%">
+          <colgroup><col style="width:22%"><col style="width:30%"><col style="width:28%"><col style="width:20%"></colgroup>
+          <thead><tr><th>Name</th><th>Company</th><th>Role</th><th>Resource</th></tr></thead>
+          <tbody>
+            <tr><td class="em">Greg Meyers</td><td>Bristol Myers Squibb</td><td>Chief Digital & Technology Officer</td><td><span class="stage-tag stage-hit" style="font-size:9px">Tech Council</span></td></tr>
+            <tr><td class="em">Jim Swanson</td><td>Johnson & Johnson</td><td>Global CIO</td><td><span class="stage-tag stage-hit" style="font-size:9px">Tech Council</span></td></tr>
+            <tr><td class="em">Ryan Snyder</td><td>Thermo Fisher Scientific</td><td>SVP & CIO</td><td><span class="stage-tag stage-hit" style="font-size:9px">Tech Council</span></td></tr>
+            <tr><td class="em">Jorge Populo</td><td>UnitedHealth Group</td><td>CIO</td><td><span class="stage-tag stage-hit" style="font-size:9px">Tech Council</span></td></tr>
+            <tr><td class="em">Michelle Greene</td><td>Cardinal Health</td><td>Global CIO</td><td><span class="stage-tag stage-hit" style="font-size:9px">Tech Council</span></td></tr>
+            <tr><td class="em">BJ Moore</td><td>Providence Healthcare</td><td>Former CIO</td><td><span class="stage-tag stage-hit" style="font-size:9px">Tech Council</span></td></tr>
+            <tr><td class="em">Daniel Barchi</td><td>CommonSpirit</td><td>CIO</td><td><span class="stage-tag stage-hit" style="font-size:9px">Tech Council</span></td></tr>
+            <tr><td class="em">Aimee Cardwell</td><td>UnitedHealth Group</td><td>Former EVP & CISO</td><td><span class="stage-tag stage-lead" style="font-size:9px">CISO Council</span></td></tr>
+            <tr><td class="em">James Beeson</td><td>Cigna</td><td>Former CISO</td><td><span class="stage-tag stage-lead" style="font-size:9px">CISO Council</span></td></tr>
+            <tr><td class="em">Nick Vigier</td><td>Oscar Health</td><td>CISO</td><td><span class="stage-tag stage-lead" style="font-size:9px">CISO Council</span></td></tr>
+            <tr><td class="em">Tiffany Inglis</td><td>Sera Prognostics</td><td>Chief Medical Officer</td><td><span class="stage-tag stage-disc" style="font-size:9px">Exec. Advisor</span></td></tr>
+            <tr><td class="em">David Weathington</td><td>Elevance</td><td>VP, Network & Value Based Solutions</td><td><span class="stage-tag stage-disc" style="font-size:9px">Exec. Advisor</span></td></tr>
+            <tr><td class="em">Mike Bowersox</td><td>Humana</td><td>Former Medicare President, Mid-Atlantic</td><td><span class="stage-tag stage-disc" style="font-size:9px">Exec. Advisor</span></td></tr>
+            <tr><td class="em">Michelle Carnahan</td><td>Thirty Madison</td><td>President</td><td><span class="stage-tag stage-disc" style="font-size:9px">Exec. Advisor</span></td></tr>
+            <tr><td class="em">Jason Parrot</td><td>Vida</td><td>SVP Enterprise Growth & Partnerships</td><td><span class="stage-tag stage-disc" style="font-size:9px">Exec. Advisor</span></td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 
-  <!-- OPERATING PARTNERS -->
+  <!-- OUR NETWORK (Operating Partners + Sr. Advisors + Councils) -->
   <div class="content-panel" data-node="ops">
     <div class="panel-color-bar" style="background:linear-gradient(90deg,#80E9FF,#635BFF)"></div>
     <div class="panel-inner">
-      <div class="panel-breadcrumb"><span>Home</span><span class="bc-sep">›</span><span>Our Team</span><span class="bc-sep">›</span><span style="color:#80E9FF">Operating Partners</span></div>
-      <div class="label">Operating Partners</div>
-      <h2 class="sec-title">Relevant expertise to<br>help Isomorphic <span class="gradient-text">scale</span></h2>
-      <p class="sec-sub">Our Operating Partners are former C-suite executives who work hands-on with portfolio companies — not just advisory, but embedded operational support.</p>
+      <div class="panel-breadcrumb"><span>Home</span><span class="bc-sep">›</span><span>Our Team</span><span class="bc-sep">›</span><span style="color:#80E9FF">Our Network</span></div>
+      <div class="label">Our Network</div>
+      <h2 class="sec-title">Dedicated operating resources<br>to help Isomorphic <span class="gradient-text">scale faster</span></h2>
+      <p class="sec-sub">Operating Partners work hands-on with portfolio companies. Senior Advisors and Council members provide strategic access to decision-makers across healthcare, technology, and enterprise leadership.</p>
 
-      <div class="team-grid team-grid--ops" style="gap:18px;margin-top:28px">
-        <div class="team-card" style="padding:22px">
-          <h4 style="margin-bottom:2px">Paul Melchiorre</h4>
-          <div class="role" style="color:var(--accent);margin-bottom:10px">Former CRO, Anaplan</div>
-          <p style="font-size:13px;line-height:1.5;margin-bottom:10px">20+ years leading enterprise sales at SAP, Ariba, and Anaplan. Scaled Anaplan from $50M to $300M+ ARR.</p>
-          <div style="background:rgba(99,91,255,.06);border-radius:8px;padding:10px 14px;font-size:12px;color:var(--accent)"><strong>Isomorphic relevance:</strong> Enterprise sales motion design for pharma — territory planning, pricing models, and building repeatable large-deal playbooks</div>
-        </div>
-        <div class="team-card" style="padding:22px">
-          <h4 style="margin-bottom:2px">Scott Aronson</h4>
-          <div class="role" style="color:var(--accent);margin-bottom:10px">Former COO, Cloudera</div>
-          <p style="font-size:13px;line-height:1.5;margin-bottom:10px">Scaled Cloudera's platform business through IPO. Deep experience in enterprise data infrastructure and platform GTM.</p>
-          <div style="background:rgba(99,91,255,.06);border-radius:8px;padding:10px 14px;font-size:12px;color:var(--accent)"><strong>Isomorphic relevance:</strong> Platform-as-a-service GTM strategy — transitioning from custom engagements to scalable, repeatable platform offerings</div>
-        </div>
-        <div class="team-card" style="padding:22px">
-          <h4 style="margin-bottom:2px">Jindra Zitek</h4>
-          <div class="role" style="color:var(--accent);margin-bottom:10px">Former CIO, Chobani</div>
-          <p style="font-size:13px;line-height:1.5;margin-bottom:10px">Led digital transformation and enterprise data strategy across global operations. Deep expertise in data infrastructure.</p>
-          <div style="background:rgba(99,91,255,.06);border-radius:8px;padding:10px 14px;font-size:12px;color:var(--accent)"><strong>Isomorphic relevance:</strong> Data infrastructure at scale — critical for managing pharma-grade datasets, compliance, and secure compute environments</div>
-        </div>
-        <div class="team-card" style="padding:22px">
-          <h4 style="margin-bottom:2px">Sharon Rothstein</h4>
-          <div class="role" style="color:var(--accent);margin-bottom:10px">Former Global CMO, Starbucks</div>
-          <p style="font-size:13px;line-height:1.5;margin-bottom:10px">Built Starbucks into a global brand icon. Expert in category creation and premium brand positioning.</p>
-          <div style="background:rgba(99,91,255,.06);border-radius:8px;padding:10px 14px;font-size:12px;color:var(--accent)"><strong>Isomorphic relevance:</strong> Category leadership positioning — establishing Isomorphic as the definitive AI drug discovery platform in a crowded landscape</div>
-        </div>
-        <div class="team-card" style="padding:22px">
-          <h4 style="margin-bottom:2px">Mike Vaughan</h4>
-          <div class="role" style="color:var(--accent);margin-bottom:10px">Former COO, Venmo</div>
-          <p style="font-size:13px;line-height:1.5;margin-bottom:10px">Scaled Venmo's operations through hypergrowth and PayPal integration. Expert in organizational design and process.</p>
-          <div style="background:rgba(99,91,255,.06);border-radius:8px;padding:10px 14px;font-size:12px;color:var(--accent)"><strong>Isomorphic relevance:</strong> Operational scaling — building the systems and processes to support rapid headcount and revenue growth</div>
-        </div>
-        <div class="team-card" style="padding:22px">
-          <h4 style="margin-bottom:2px">Julie Herendeen</h4>
-          <div class="role" style="color:var(--accent);margin-bottom:10px">Former CMO, Dropbox</div>
-          <p style="font-size:13px;line-height:1.5;margin-bottom:10px">Led Dropbox's growth marketing through IPO. Deep expertise in product-led growth and enterprise expansion.</p>
-          <div style="background:rgba(99,91,255,.06);border-radius:8px;padding:10px 14px;font-size:12px;color:var(--accent)"><strong>Isomorphic relevance:</strong> Growth marketing playbook — driving awareness and pipeline within the pharma/biotech buyer community</div>
-        </div>
+      <div style="background:rgba(99,91,255,.04);border-radius:12px;padding:16px 20px;margin-top:20px;border:1px solid rgba(99,91,255,.06)">
+        <p style="font-size:12.5px;color:var(--text2);line-height:1.6;margin:0"><strong style="color:var(--text)">For Isomorphic:</strong> Our Tech Council and CISO Council include technology decision-makers at major pharma and healthcare companies (BMS, J&J, Thermo Fisher, UnitedHealth, Cardinal Health). These relationships provide warm introductions to prospective customers and give Isomorphic a direct line to the buyers who control AI procurement budgets.</p>
       </div>
-    </div>
-  </div>
 
-  <!-- ADVISORY COUNCILS -->
-  <div class="content-panel" data-node="councils">
-    <div class="panel-color-bar" style="background:linear-gradient(90deg,#FF5CAA,#635BFF)"></div>
-    <div class="panel-inner">
-      <div class="panel-breadcrumb"><span>Home</span><span class="bc-sep">›</span><span>Our Team</span><span class="bc-sep">›</span><span style="color:#FF5CAA">Advisory Councils</span></div>
-      <div class="label">Advisory Network</div>
-      <h2 class="sec-title">Unlock access to our<br><span class="gradient-text">advisory councils</span></h2>
-      <p class="sec-sub">Five specialized councils of senior executives from the world's leading companies. Direct access to decision-makers who can open doors, validate strategy, and accelerate Isomorphic's commercial traction.</p>
+      <!-- OPERATING PARTNERS -->
+      <h3 style="font-size:15px;font-family:var(--font-g);font-weight:700;margin:28px 0 4px;color:var(--accent)">Operating Partners</h3>
+      <p style="font-size:12px;color:var(--text3);margin-bottom:14px">Embedded C-suite operators — not just advisory, but hands-on execution support.</p>
 
-      <div class="council-grid" style="gap:16px;margin-top:28px">
-        <div style="background:rgba(99,91,255,.05);border-radius:14px;padding:20px;border:1px solid rgba(99,91,255,.08)">
-          <div style="font-family:var(--font-g);font-weight:700;font-size:15px;margin-bottom:12px;color:var(--accent)">CIO Council</div>
-          <p style="font-size:12.5px;color:var(--text2);line-height:1.5;margin:0 0 12px">Technology leaders who evaluate and deploy enterprise AI platforms</p>
-          <div class="logo-row" style="gap:12px;flex-wrap:wrap">
-            <div class="lr-item"><div class="lr-icon no-pad" style="background:#D51E27;width:24px;height:24px;border-radius:5px"><img src="https://www.google.com/s2/favicons?domain=jnj.com&sz=128" alt="J&J"></div><div class="lr-name" style="font-size:11px">J&J</div></div>
-            <div class="lr-item"><div class="lr-icon no-pad" style="background:#0078D4;width:24px;height:24px;border-radius:5px"><img src="https://www.google.com/s2/favicons?domain=microsoft.com&sz=128" alt="Microsoft"></div><div class="lr-name" style="font-size:11px">Microsoft</div></div>
-            <div class="lr-item"><div class="lr-icon no-pad" style="background:#FF9900;width:24px;height:24px;border-radius:5px"><img src="https://www.google.com/s2/favicons?domain=amazon.com&sz=128" alt="Amazon"></div><div class="lr-name" style="font-size:11px">Amazon</div></div>
-            <div class="lr-item"><div class="lr-icon no-pad" style="background:#003087;width:24px;height:24px;border-radius:5px"><img src="https://www.google.com/s2/favicons?domain=paypal.com&sz=128" alt="PayPal"></div><div class="lr-name" style="font-size:11px">PayPal</div></div>
+      <div class="data-table-wrap">
+        <table class="data-table" style="font-size:12px;table-layout:fixed;width:100%">
+          <colgroup><col style="width:22%"><col style="width:28%"><col style="width:50%"></colgroup>
+          <thead><tr><th>Name</th><th>Background</th><th>Isomorphic Relevance</th></tr></thead>
+          <tbody>
+            <tr><td class="em">Paul Melchiorre</td><td>Former CRO, Anaplan</td><td>Enterprise sales motion — territory planning, pricing, repeatable large-deal playbooks</td></tr>
+            <tr><td class="em">Scott Aronson</td><td>Former COO, Cloudera</td><td>Platform-as-a-service GTM — transitioning custom engagements to scalable offerings</td></tr>
+            <tr><td class="em">Jindra Zitek</td><td>Former CIO, Chobani</td><td>Data infrastructure at scale — pharma-grade datasets, compliance, secure compute</td></tr>
+            <tr><td class="em">Sharon Rothstein</td><td>Former Global CMO, Starbucks</td><td>Category leadership positioning — establishing Isomorphic as the definitive AI discovery platform</td></tr>
+            <tr><td class="em">Mike Vaughan</td><td>Former COO, Venmo</td><td>Operational scaling — systems and processes to support rapid headcount and revenue growth</td></tr>
+            <tr><td class="em">Julie Herendeen</td><td>Former CMO, Dropbox</td><td>Growth marketing — driving awareness and pipeline within pharma/biotech buyers</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- SENIOR ADVISORS -->
+      <h3 style="font-size:15px;font-family:var(--font-g);font-weight:700;margin:28px 0 4px;color:var(--green)">Senior Advisors</h3>
+      <p style="font-size:12px;color:var(--text3);margin-bottom:14px">Former C-suite executives providing strategic guidance and board-level relationships.</p>
+
+      <div class="data-table-wrap">
+        <table class="data-table" style="font-size:12px;table-layout:fixed;width:100%">
+          <colgroup><col style="width:25%"><col style="width:35%"><col style="width:40%"></colgroup>
+          <thead><tr><th>Name</th><th>Background</th><th>Relevance</th></tr></thead>
+          <tbody>
+            <tr><td class="em">David Swinghamer</td><td>Former CEO, Shake Shack</td><td>CEO-level operational scaling and public company leadership</td></tr>
+            <tr><td class="em">Harry Moseley</td><td>Former CIO, Zoom</td><td>Enterprise technology deployment and global IT strategy</td></tr>
+            <tr><td class="em">John Kinzer</td><td>Former CFO, HubSpot</td><td>SaaS financial modeling, IPO readiness, and growth-stage finance</td></tr>
+            <tr><td class="em">Michael Nolan</td><td>Former VP Global Real Estate, Amazon</td><td>Large-scale infrastructure and facilities strategy</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ADVISORY COUNCILS -->
+      <h3 style="font-size:15px;font-family:var(--font-g);font-weight:700;margin:28px 0 4px;color:#FF5CAA">Advisory Councils</h3>
+      <p style="font-size:12px;color:var(--text3);margin-bottom:14px">Specialized councils of senior executives — direct access to decision-makers who can open doors and validate strategy.</p>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
+        <div style="background:rgba(99,91,255,.04);border-radius:12px;padding:16px;border:1px solid rgba(99,91,255,.06)">
+          <div style="font-family:var(--font-g);font-weight:700;font-size:13px;margin-bottom:8px;color:var(--accent)">Tech Council <span style="font-weight:400;font-size:11px;color:var(--text3)">(27 members)</span></div>
+          <div style="font-size:11px;color:var(--text2);line-height:1.7">
+            <div><strong>Greg Meyers</strong> — CDTO, Bristol Myers Squibb</div>
+            <div><strong>Jim Swanson</strong> — Global CIO, Johnson & Johnson</div>
+            <div><strong>Ryan Snyder</strong> — SVP & CIO, Thermo Fisher Scientific</div>
+            <div><strong>Jorge Populo</strong> — CIO, UnitedHealth Group</div>
+            <div><strong>Michelle Greene</strong> — Global CIO, Cardinal Health</div>
+            <div><strong>BJ Moore</strong> — Former CIO, Providence Healthcare</div>
+            <div><strong>Daniel Barchi</strong> — CIO, CommonSpirit</div>
+            <div style="color:var(--text3);margin-top:4px">+ 20 CIOs/CTOs across Boeing, Toast, United Airlines, Sephora, PayPal, Hasbro, AIG, and more</div>
           </div>
         </div>
-        <div style="background:rgba(255,107,157,.05);border-radius:14px;padding:20px;border:1px solid rgba(255,107,157,.08)">
-          <div style="font-family:var(--font-g);font-weight:700;font-size:15px;margin-bottom:12px;color:#FF6B9D">Healthcare Council</div>
-          <p style="font-size:12.5px;color:var(--text2);line-height:1.5;margin:0 0 12px">Healthcare executives who understand pharma procurement and R&D workflows</p>
-          <div class="logo-row" style="gap:12px;flex-wrap:wrap">
-            <div class="lr-item"><div class="lr-icon no-pad" style="background:#D51E27;width:24px;height:24px;border-radius:5px"><img src="https://www.google.com/s2/favicons?domain=jnj.com&sz=128" alt="J&J"></div><div class="lr-name" style="font-size:11px">J&J</div></div>
-            <div class="lr-item"><div class="lr-icon no-pad" style="background:#002855;width:24px;height:24px;border-radius:5px"><img src="https://www.google.com/s2/favicons?domain=unitedhealthgroup.com&sz=128" alt="UHG"></div><div class="lr-name" style="font-size:11px">UnitedHealth</div></div>
-            <div class="lr-item"><div class="lr-icon no-pad" style="background:#00447C;width:24px;height:24px;border-radius:5px"><img src="https://www.google.com/s2/favicons?domain=cigna.com&sz=128" alt="Cigna"></div><div class="lr-name" style="font-size:11px">Cigna</div></div>
-            <div class="lr-item"><div class="lr-icon no-pad" style="background:#563d7c;width:24px;height:24px;border-radius:5px"><img src="https://www.google.com/s2/favicons?domain=providence.org&sz=128" alt="Providence"></div><div class="lr-name" style="font-size:11px">Providence</div></div>
-            <div class="lr-item"><div class="lr-icon no-pad" style="background:#00B140;width:24px;height:24px;border-radius:5px"><img src="https://www.google.com/s2/favicons?domain=oscar.com&sz=128" alt="Oscar"></div><div class="lr-name" style="font-size:11px">Oscar Health</div></div>
-          </div>
-        </div>
-        <div style="background:rgba(36,209,100,.05);border-radius:14px;padding:20px;border:1px solid rgba(36,209,100,.08)">
-          <div style="font-family:var(--font-g);font-weight:700;font-size:15px;margin-bottom:12px;color:var(--green)">CFO Council</div>
-          <p style="font-size:12.5px;color:var(--text2);line-height:1.5;margin:0 0 12px">Finance leaders who influence budget allocation and vendor procurement</p>
-          <div class="logo-row" style="gap:12px;flex-wrap:wrap">
-            <div class="lr-item"><div class="lr-icon no-pad" style="background:#ED1C24;width:24px;height:24px;border-radius:5px"><img src="https://www.google.com/s2/favicons?domain=coca-colacompany.com&sz=128" alt="Coca-Cola"></div><div class="lr-name" style="font-size:11px">Coca-Cola</div></div>
-            <div class="lr-item"><div class="lr-icon no-pad" style="background:#004B87;width:24px;height:24px;border-radius:5px"><img src="https://www.google.com/s2/favicons?domain=united.com&sz=128" alt="United Airlines"></div><div class="lr-name" style="font-size:11px">United Airlines</div></div>
-            <div class="lr-item"><div class="lr-icon no-pad" style="background:#CB1F47;width:24px;height:24px;border-radius:5px"><img src="https://www.google.com/s2/favicons?domain=aig.com&sz=128" alt="AIG"></div><div class="lr-name" style="font-size:11px">AIG</div></div>
-            <div class="lr-item"><div class="lr-icon no-pad" style="background:#1877F2;width:24px;height:24px;border-radius:5px"><img src="https://www.google.com/s2/favicons?domain=fanatics.com&sz=128" alt="Fanatics"></div><div class="lr-name" style="font-size:11px">Fanatics</div></div>
-          </div>
-        </div>
-        <div style="background:rgba(255,122,0,.05);border-radius:14px;padding:20px;border:1px solid rgba(255,122,0,.08)">
-          <div style="font-family:var(--font-g);font-weight:700;font-size:15px;margin-bottom:12px;color:var(--orange)">CMO Council</div>
-          <p style="font-size:12.5px;color:var(--text2);line-height:1.5;margin:0 0 12px">Marketing leaders who can advise on brand strategy and market positioning</p>
-          <div class="logo-row" style="gap:12px;flex-wrap:wrap">
-            <div class="lr-item"><div class="lr-icon no-pad" style="background:#000;width:24px;height:24px;border-radius:5px"><img src="https://www.google.com/s2/favicons?domain=sephora.com&sz=128" alt="Sephora"></div><div class="lr-name" style="font-size:11px">Sephora</div></div>
-            <div class="lr-item"><div class="lr-icon no-pad" style="background:#ED6C2D;width:24px;height:24px;border-radius:5px"><img src="https://www.google.com/s2/favicons?domain=toasttab.com&sz=128" alt="Toast"></div><div class="lr-name" style="font-size:11px">Toast</div></div>
-            <div class="lr-item"><div class="lr-icon no-pad" style="background:#E03C31;width:24px;height:24px;border-radius:5px"><img src="https://www.google.com/s2/favicons?domain=ulta.com&sz=128" alt="Ulta"></div><div class="lr-name" style="font-size:11px">Ulta</div></div>
-            <div class="lr-item"><div class="lr-icon no-pad" style="background:#CF202F;width:24px;height:24px;border-radius:5px"><img src="https://www.google.com/s2/favicons?domain=hasbro.com&sz=128" alt="Hasbro"></div><div class="lr-name" style="font-size:11px">Hasbro</div></div>
+        <div style="background:rgba(255,92,170,.04);border-radius:12px;padding:16px;border:1px solid rgba(255,92,170,.06)">
+          <div style="font-family:var(--font-g);font-weight:700;font-size:13px;margin-bottom:8px;color:#FF5CAA">CISO Council <span style="font-weight:400;font-size:11px;color:var(--text3)">(13 members)</span></div>
+          <div style="font-size:11px;color:var(--text2);line-height:1.7">
+            <div><strong>Aimee Cardwell</strong> — Former EVP & CISO, UnitedHealth Group</div>
+            <div><strong>James Beeson</strong> — Former CISO, Cigna</div>
+            <div><strong>Nick Vigier</strong> — CISO, Oscar Health</div>
+            <div><strong>Aanchal Gupta</strong> — CVP, Microsoft</div>
+            <div><strong>Derek Benz</strong> — CISO, Coca-Cola</div>
+            <div><strong>Lakshmi Hanspal</strong> — Former Global CISO, Amazon</div>
+            <div style="color:var(--text3);margin-top:4px">+ 7 CISOs across EA, CBRE, IHG, CSX, Bill.com, Alteryx, Republic Services</div>
           </div>
         </div>
       </div>
 
-      <div style="background:rgba(99,91,255,.04);border-radius:12px;padding:18px 22px;margin-top:24px;border:1px solid rgba(99,91,255,.06)">
-        <div style="font-family:var(--font-g);font-weight:700;font-size:13px;margin-bottom:8px">How Isomorphic Benefits</div>
-        <p style="font-size:12.5px;color:var(--text2);line-height:1.6;margin:0">Our Healthcare Council and CIO Council members include R&D and technology decision-makers at major pharma companies. These relationships provide warm introductions to prospective customers, help validate product-market fit, and give Isomorphic a direct line to the buyers who control AI procurement budgets.</p>
+      <div style="display:grid;grid-template-columns:1fr;gap:12px">
+        <div style="background:rgba(255,107,157,.04);border-radius:12px;padding:16px;border:1px solid rgba(255,107,157,.06)">
+          <div style="font-family:var(--font-g);font-weight:700;font-size:13px;margin-bottom:8px;color:#FF6B9D">Executive Advisors <span style="font-weight:400;font-size:11px;color:var(--text3)">(40+ advisors)</span></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px 24px;font-size:11px;color:var(--text2);line-height:1.7">
+            <div><strong>Tiffany Inglis</strong> — CMO, Sera Prognostics</div>
+            <div><strong>Michelle Carnahan</strong> — President, Thirty Madison</div>
+            <div><strong>David Weathington</strong> — VP Network & VBS, Elevance</div>
+            <div><strong>Mike Bowersox</strong> — Former Medicare President, Humana</div>
+            <div><strong>Jason Parrot</strong> — SVP Enterprise Growth, Vida</div>
+            <div><strong>Michael Hoff</strong> — Global Head of Partners, Mistral AI</div>
+            <div><strong>Garrett Marker</strong> — CRO, Brex</div>
+            <div><strong>Benn Stancil</strong> — Founder & CTO, Mode</div>
+            <div style="color:var(--text3);grid-column:1/-1;margin-top:4px">+ 30+ advisors from Stripe, HubSpot, Cloudflare, Meta, monday.com, Grafana, Klaviyo, Warby Parker, and more</div>
+          </div>
+        </div>
       </div>
+
     </div>
   </div>
 
@@ -1223,6 +1404,12 @@ h2.sec-title{font-family:var(--font-b);font-size:clamp(32px,4vw,52px);line-heigh
     if(inp.value === PASS){
       sessionStorage.setItem('pw-ok','1');
       gate.classList.add('unlocked');
+      // Replay all Lottie logos after gate fades
+      setTimeout(function(){
+        if(window.isoLottieInstances){
+          window.isoLottieInstances.forEach(function(inst){ inst.anim.goToAndPlay(0, true); });
+        }
+      }, 800);
     } else {
       inp.classList.add('pw-error');
       inp.value = '';
@@ -1255,8 +1442,7 @@ const nodeData = [
   { id:'team', label:'Stripes Overview', cluster:'Our Team', color:'#635BFF' },
   { id:'scaleteam', label:'Scale Team', cluster:'Our Team', color:'#24D164' },
   { id:'healthcare', label:'Healthcare Expertise', cluster:'Our Team', color:'#FF6B9D' },
-  { id:'ops', label:'Operating Partners', cluster:'Our Team', color:'#80E9FF' },
-  { id:'councils', label:'Advisory Councils', cluster:'Our Team', color:'#FF5CAA' },
+  { id:'ops', label:'Our Network', cluster:'Our Team', color:'#80E9FF' },
   { id:'end', label:'Thank You', cluster:'Our Team', color:'#635BFF' },
 ];
 
@@ -1549,20 +1735,22 @@ setTimeout(dismissLoader, LOADER_MIN_MS);
 // ANIMATED ISOMORPHIC LOGO (Lottie)
 // ═══════════════════════════
 const ISO_LOTTIE_URL = 'https://cdn.prod.website-files.com/63692b9f2544be26f383691c/638dc2f2c52f540707527ef9_ISO_logo.json';
-const isoLottieInstances = [];
+window.isoLottieInstances = [];
+const isoLottieInstances = window.isoLottieInstances;
 
 document.querySelectorAll('[data-iso-lottie]').forEach(container => {
+  const isInPwGate = !!container.closest('#pw-gate');
   const anim = lottie.loadAnimation({
     container: container,
     renderer: 'svg',
-    loop: false,
-    autoplay: false,
+    loop: isInPwGate,
+    autoplay: isInPwGate,
     path: ISO_LOTTIE_URL
   });
   isoLottieInstances.push({ anim, container });
 
   // Play animation on hover (replay from start)
-  const hoverTarget = container.closest('.brand-overlay') || container.closest('.hero-eyebrow') || container;
+  const hoverTarget = container.closest('.brand-overlay') || container.closest('#pw-gate') || container.closest('.hero-eyebrow') || container;
   hoverTarget.addEventListener('mouseenter', () => {
     anim.goToAndPlay(0, true);
   });

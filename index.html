@@ -37,9 +37,23 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--text);overflow:h
 #loader model-viewer::part(default-progress-bar){display:none}
 .loader-text{font-family:var(--font-l);font-size:12px;color:var(--text3);letter-spacing:.15em;text-transform:uppercase}
 
+/* ══ PASSWORD GATE ══ */
+#pw-gate{position:fixed;inset:0;z-index:99999;background:linear-gradient(135deg,#eef6ef 0%,#eaf3f7 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;transition:opacity .6s ease,visibility .6s ease}
+#pw-gate.unlocked{opacity:0;visibility:hidden;pointer-events:none}
+#pw-gate .pw-brand{display:flex;align-items:center;gap:10px;margin-bottom:8px;opacity:.7}
+#pw-gate .pw-brand img{height:28px}
+#pw-gate .pw-label{font-family:var(--font-l);font-size:11px;color:var(--text3);letter-spacing:.15em;text-transform:uppercase}
+#pw-gate .pw-input-wrap{display:flex;align-items:center;gap:8px}
+#pw-gate input{font-family:var(--font-b);font-size:14px;padding:10px 16px;border:1px solid var(--border);border-radius:10px;outline:none;width:260px;background:#fff;transition:border-color .2s}
+#pw-gate input:focus{border-color:var(--accent)}
+#pw-gate input.pw-error{border-color:var(--red);animation:pw-shake .4s ease}
+#pw-gate button{font-family:var(--font-b);font-size:13px;font-weight:500;padding:10px 20px;border:none;border-radius:10px;background:var(--text);color:#fff;cursor:pointer;transition:opacity .2s}
+#pw-gate button:hover{opacity:.8}
+@keyframes pw-shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+
 /* ══ VIDEO BACKGROUND ══ */
 #scene-container{position:fixed;inset:0;z-index:1;overflow:hidden;background:linear-gradient(135deg,#eef6ef 0%,#eaf3f7 100%)}
-#scene-container video{position:absolute;bottom:0;right:0;width:85vw;height:85vh;object-fit:contain;opacity:.9;transition:opacity .8s ease}
+#scene-container video{position:absolute;bottom:0;right:0;width:max(85vw,1200px);height:max(85vh,800px);object-fit:contain;opacity:.9;transition:opacity .8s ease}
 #scene-container.panel-open video{opacity:.5}
 #video-overlay{position:absolute;inset:0;background:radial-gradient(ellipse at 80% 80%,transparent 40%,rgba(246,246,246,.4) 100%);transition:background .5s ease}
 #scene-container.panel-open #video-overlay{background:radial-gradient(ellipse at 60% 70%,transparent 20%,rgba(246,246,246,.6) 100%)}
@@ -229,7 +243,7 @@ h2.sec-title{font-family:var(--font-b);font-size:clamp(32px,4vw,52px);line-heigh
 
 /* ══ NAVIGATION SIDEBAR ══ */
 .deck-nav{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);z-index:30;
-  width:340px;max-height:calc(100vh - 80px);
+  width:340px;min-width:320px;max-height:calc(100vh - 80px);
   transition:left .5s cubic-bezier(.22,1,.36,1),top .5s cubic-bezier(.22,1,.36,1),transform .5s cubic-bezier(.22,1,.36,1),width .4s cubic-bezier(.22,1,.36,1),opacity .4s,visibility .4s}
 .deck-nav.hidden{opacity:0;visibility:hidden;transform:translate(-50%,-50%) scale(.95)}
 /* When panel is open, slide to left sidebar position */
@@ -267,10 +281,10 @@ h2.sec-title{font-family:var(--font-b);font-size:clamp(32px,4vw,52px);line-heigh
 
 /* ══ RESPONSIVE — TABLET (1024px) ══ */
 @media(max-width:1024px) and (min-width:769px){
-  .deck-nav{width:280px}
-  .deck-nav.sidebar{width:280px;left:16px}
-  #content-panels{left:312px}
-  .back-btn{left:316px}
+  .deck-nav{width:320px}
+  .deck-nav.sidebar{width:320px;left:16px}
+  #content-panels{left:352px}
+  .back-btn{left:356px}
   .panel-inner{padding:48px 32px 60px}
   .stat-val{font-size:36px}
   .stat-grid{grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
@@ -375,6 +389,16 @@ h2.sec-title{font-family:var(--font-b);font-size:clamp(32px,4vw,52px);line-heigh
 </head>
 <body>
 
+<!-- ══ PASSWORD GATE ══ -->
+<div id="pw-gate">
+  <div class="pw-brand"><img src="https://www.google.com/s2/favicons?domain=stripes.co&sz=64" alt="Stripes"> × Isomorphic Labs</div>
+  <div class="pw-label">Enter password to continue</div>
+  <div class="pw-input-wrap">
+    <input type="password" id="pw-input" placeholder="Password" autocomplete="off" autofocus>
+    <button id="pw-btn">Enter</button>
+  </div>
+</div>
+
 <!-- ══ LOADING SCREEN ══ -->
 <div id="loader">
   <model-viewer
@@ -450,7 +474,7 @@ h2.sec-title{font-family:var(--font-b);font-size:clamp(32px,4vw,52px);line-heigh
         <button class="nav-item" data-target="diligence" style="--nav-accent:#24D164">Market Diligence</button>
         <button class="nav-item" data-target="thesis" style="--nav-accent:#635BFF">Investment Thesis</button>
         <button class="nav-item" data-target="uvp" style="--nav-accent:#80E9FF">Unique Value Prop</button>
-        <button class="nav-item" data-target="validation" style="--nav-accent:#C8A95A">Customer Validation</button>
+        <button class="nav-item" data-target="validation" style="--nav-accent:#E21937">Partner Case Study</button>
         <button class="nav-item" data-target="competitive" style="--nav-accent:#FF5CAA">Competitive Landscape</button>
         <button class="nav-item" data-target="growth" style="--nav-accent:#24D164">Growth Vectors</button>
         <button class="nav-item" data-target="risks" style="--nav-accent:#FF7A00">Risks & Mitigants</button>
@@ -724,9 +748,9 @@ h2.sec-title{font-family:var(--font-b);font-size:clamp(32px,4vw,52px);line-heigh
         </div>
         <div class="q-card" onclick="toggleExpand(this)">
           <div class="q-mark">"</div>
-          <div class="q-text">Like Isomorphic more, to be honest. More comfortable using it, more comfortable looking at the target, understanding the binding. Ease of using it a lot better.</div>
-          <div class="q-extra">A current paying customer actively using the platform for dermatology research, demonstrating real commercial traction beyond traditional pharma markets.</div>
-          <div class="q-author"><div class="q-avatar" style="background:linear-gradient(135deg,#FF5CAA,#FF8E53)">EL</div><div class="q-info"><h4>Director & Assoc. Research Fellow</h4><p>Estée Lauder — Current Customer</p></div></div>
+          <div class="q-text">If we were to remove that they were a tech-first company, they are a true partner in the sense that we are co-developing assets with them. Our intention and hope is to go to market with them.</div>
+          <div class="q-extra">Lilly views Isomorphic not as a vendor but as a strategic co-development partner with shared upside — a level of commitment that goes far beyond typical technology licensing.</div>
+          <div class="q-author"><div class="q-avatar" style="background:linear-gradient(135deg,#E21937,#FF5CAA)">LY</div><div class="q-info"><h4>Sr. Director, AI & Accelerated Computing</h4><p>Eli Lilly & Co</p></div></div>
         </div>
       </div>
     </div>
@@ -768,23 +792,24 @@ h2.sec-title{font-family:var(--font-b);font-size:clamp(32px,4vw,52px);line-heigh
     </div>
   </div>
 
-  <!-- ESTÉE LAUDER VALIDATION -->
+  <!-- ELI LILLY PARTNERSHIP CASE STUDY -->
   <div class="content-panel" data-node="validation">
-    <div class="panel-color-bar" style="background:linear-gradient(90deg,#C8A95A,#FF7A00)"></div>
+    <div class="panel-color-bar" style="background:linear-gradient(90deg,#E21937,#FF5CAA)"></div>
     <div class="panel-inner">
-      <div class="panel-breadcrumb"><span>Home</span><span class="bc-sep">›</span><span>Our Perspective</span><span class="bc-sep">›</span><span style="color:#C8A95A">Customer Validation</span></div>
-      <div class="label">Customer Validation</div>
-      <h2 class="sec-title"><span style="display:inline-flex;align-items:center;gap:12px"><span class="lr-icon no-pad" style="background:#C8A95A;display:inline-flex;width:40px;height:40px;border-radius:10px"><img src="https://www.google.com/s2/favicons?domain=elcompanies.com&sz=128" alt="EL"></span> Estée Lauder</span> — AI Discovery in Action</h2>
-      <p class="sec-sub">Real-world platform adoption for dermatology R&D demonstrates commercial traction beyond traditional pharma.</p>
+      <div class="panel-breadcrumb"><span>Home</span><span class="bc-sep">›</span><span>Our Perspective</span><span class="bc-sep">›</span><span style="color:#E21937">Partner Case Study</span></div>
+      <div class="label">Partner Case Study</div>
+      <h2 class="sec-title"><span style="display:inline-flex;align-items:center;gap:12px"><span class="lr-icon no-pad" style="background:#E21937;display:inline-flex;width:40px;height:40px;border-radius:10px"><img src="https://www.google.com/s2/favicons?domain=lilly.com&sz=128" alt="Eli Lilly"></span> Eli Lilly</span> — AI-Powered Co-Development</h2>
+      <p class="sec-sub">Lilly's partnership with Isomorphic goes far beyond a technology platform deal — it is a deep scientific co-development with shared clinical upside.</p>
       <div class="data-table-wrap">
         <table class="data-table">
-          <thead><tr><th style="width:160px">Dimension</th><th>Customer Feedback</th></tr></thead>
+          <thead><tr><th style="width:160px">Dimension</th><th>Partner Insight</th></tr></thead>
           <tbody>
-            <tr><td class="em">Time-to-Insight</td><td>"Saving a lot of time. Can screen pretty fast a bunch of molecules and understand whether or not they have relevancy to a target of interest."</td></tr>
-            <tr><td class="em">Differentiation</td><td>"Unlike other software, Isomorphic is a little bit more clear in depth in terms of what types of binding capabilities certain molecules have."</td></tr>
-            <tr><td class="em">New Chemical Space</td><td>"Giving us new chemical space to find different molecules. Rather than probing through traditional methods, we can speed up doing things in silico."</td></tr>
-            <tr><td class="em">Preference</td><td>"Like Isomorphic more, to be honest. More comfortable using it." <span style="color:var(--text3)">(vs. Insilico Medicine, Profluent, Generative Biologics)</span></td></tr>
-            <tr><td class="em">Duration & Spend</td><td>~8 months active use; <span class="hl">~$100K+</span> subscription, deployed globally</td></tr>
+            <tr><td class="em">Partnership Model</td><td>Co-developing novel drug candidates together. <em>"If we were to remove that they were a tech-first company, they are a true partner — we are co-developing assets with them."</em> Intention to go to market jointly and share in the upside.</td></tr>
+            <tr><td class="em">Strategic Rationale</td><td>Isomorphic finds novel molecular matter that traditional approaches cannot. Acts as both a complement and a backup — providing differentiated shots on goal beyond what Lilly's internal teams develop.</td></tr>
+            <tr><td class="em">Scientific Depth</td><td>Not just technologists — Isomorphic performs in-vitro experimental validation alongside their models. Lilly pays for these services and for firewalling employees from competitors.</td></tr>
+            <tr><td class="em">Data & IP</td><td>Isomorphic gains institutional knowledge from the partnership but does not train on Lilly's data. All partnership data stays with Lilly. No model advantage leakage to competitors.</td></tr>
+            <tr><td class="em">Clinical Potential</td><td><em>"If anything we're collaborating on gets to Phase 1 it's an easy 5×. If anything gets to Phase 2 we would probably want to buy them."</em> Clinical milestones are the name of the game.</td></tr>
+            <tr><td class="em">Market Context</td><td>Lilly is the <span class="hl">top spender on AI in pharma</span>. Taking GLP-1 winnings and partnering broadly to find the next franchise. AI in drug discovery is still unproven — but Isomorphic is the bet they're making.</td></tr>
           </tbody>
         </table>
       </div>
@@ -1186,6 +1211,30 @@ h2.sec-title{font-family:var(--font-b);font-size:clamp(32px,4vw,52px);line-heigh
 
 <script>
 // ═══════════════════════════
+// PASSWORD GATE
+// ═══════════════════════════
+(function(){
+  const PASS = 'StripesLovesIsomorphic';
+  const gate = document.getElementById('pw-gate');
+  const inp = document.getElementById('pw-input');
+  const btn = document.getElementById('pw-btn');
+  if(sessionStorage.getItem('pw-ok')==='1'){ gate.classList.add('unlocked'); }
+  function tryUnlock(){
+    if(inp.value === PASS){
+      sessionStorage.setItem('pw-ok','1');
+      gate.classList.add('unlocked');
+    } else {
+      inp.classList.add('pw-error');
+      inp.value = '';
+      inp.placeholder = 'Incorrect password';
+      setTimeout(()=>{ inp.classList.remove('pw-error'); inp.placeholder='Password'; },800);
+    }
+  }
+  btn.addEventListener('click', tryUnlock);
+  inp.addEventListener('keydown', e=>{ if(e.key==='Enter') tryUnlock(); });
+})();
+
+// ═══════════════════════════
 // NODE DATA (for cluster nav)
 // ═══════════════════════════
 const nodeData = [
@@ -1199,7 +1248,7 @@ const nodeData = [
   { id:'diligence', label:'Market Diligence', cluster:'Our Perspective', color:'#24D164' },
   { id:'thesis', label:'Investment Thesis', cluster:'Our Perspective', color:'#635BFF' },
   { id:'uvp', label:'Unique Value Prop', cluster:'Our Perspective', color:'#80E9FF' },
-  { id:'validation', label:'Customer Validation', cluster:'Our Perspective', color:'#C8A95A' },
+  { id:'validation', label:'Partner Case Study', cluster:'Our Perspective', color:'#E21937' },
   { id:'competitive', label:'Competitive Landscape', cluster:'Our Perspective', color:'#FF5CAA' },
   { id:'growth', label:'Growth Vectors', cluster:'Our Perspective', color:'#24D164' },
   { id:'risks', label:'Risks & Mitigants', cluster:'Our Perspective', color:'#FF7A00' },
